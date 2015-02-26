@@ -20,7 +20,6 @@ var oAuthTypes = [
  */
 
 var UserSchema = new Schema({
-  name: { type: String, default: '' },
   email: { type: String, default: '' },
   username: { type: String, default: '' },
   provider: { type: String, default: '' },
@@ -51,11 +50,6 @@ var validatePresenceOf = function (value) {
 };
 
 // the below 5 validations only apply if you are signing up traditionally
-
-UserSchema.path('name').validate(function (name) {
-  if (this.skipValidation()) return true;
-  return name.length;
-}, 'Name cannot be blank');
 
 UserSchema.path('email').validate(function (email) {
   if (this.skipValidation()) return true;

@@ -15,7 +15,6 @@ var auth = require('./middlewares/authorization');
  */
 
 var articleAuth = [auth.requiresLogin, auth.article.hasAuthorization];
-var commentAuth = [auth.requiresLogin, auth.comment.hasAuthorization];
 
 /**
  * Expose routes

@@ -34,41 +34,8 @@ exports.index = function (req, res){
     });
 };
 
-/**
- * New article
- */
+exports.addmember = function(req, res) {
 
-exports.new = function (req, res){
-  res.render('fellowship/new', {
-    title: 'New Article',
-    article: new Article({})
-  });
-};
-
-/**
- * Create an article
- * Upload an image
- */
-
-exports.create = function (req, res) {
-  var article = new Article(req.body);
-  var images = req.files.image
-    ? [req.files.image]
-    : undefined;
-
-  article.user = req.user;
-  article.uploadAndSave(images, function (err) {
-    if (!err) {
-      req.flash('success', 'Successfully created article!');
-      return res.redirect('/fellowship/'+article._id);
-    }
-    console.log(err);
-    res.render('fellowship/new', {
-      title: 'New Article',
-      article: article,
-      errors: utils.errors(err.errors || err)
-    });
-  });
 };
 
 /**

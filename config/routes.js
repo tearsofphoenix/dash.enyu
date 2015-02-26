@@ -32,21 +32,44 @@ module.exports = function (app, passport) {
       failureRedirect: '/login',
       failureFlash: 'Invalid email or password.'
     }), users.session);
-  app.get('/users/:userId', users.show);
 
-  app.param('userId', users.load);
 
-  // article routes
-  app.param('id', fellowship.load);
-  app.get('/fellowship', fellowship.index);
-  app.get('/fellowship/new', auth.requiresLogin, fellowship.new);
-  app.post('/fellowship', auth.requiresLogin, fellowship.create);
-  app.get('/fellowship/:id', fellowship.show);
-  app.get('/fellowship/:id/edit', articleAuth, fellowship.edit);
-  app.put('/fellowship/:id', articleAuth, fellowship.update);
-  app.delete('/fellowship/:id', articleAuth, fellowship.destroy);
+    app.get('/fellowship', fellowship.index);
+    app.post('/fellowship-add-member', auth.requiresLogin, fellowship.addmember);
 
-  // home route
+    app.get('/alerts', function(req, res) {
+        res.render('alerts');
+    });
+
+    app.get('/buttons', function(req, res) {
+        res.render('buttons');
+    });
+
+    app.get('/charts', function(req, res) {
+        res.render('charts');
+    });
+
+    app.get('/calendar', function(req, res) {
+        res.render('calendar');
+    });
+
+    app.get('/content-widgets', function(req, res) {
+        res.render('content-widgets');
+    });
+
+    app.get('/form-examples', function(req, res) {
+        res.render('form-examples');
+    });
+
+    app.get('/form-validation', function(req, res) {
+        res.render('form-validation');
+    });
+
+    app.get('/tables', function(req, res) {
+        res.render('tables');
+    });
+
+    // home route
   app.get('/', fellowship.index);
 
   /**

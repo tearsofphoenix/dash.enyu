@@ -2,4 +2,102 @@
 
 {% block content %}
 
+<!-- Deafult Table -->
+<div class="block-area" id="defaultStyle">
+    <h3 class="block-title">Default Style</h3>
+    <a class="btn btn-alt m-5" data-toggle="modal" href="#fellowship-add-member">添加</a>
+
+    <!-- Modal -->
+    <div class="modal fade" id="fellowship-add-member" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">基本信息</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="form-fellowship-add-member" class="form-horizontal" role="form">
+
+                        <input type="hidden" name="_csrf" value="{{ csrf_token }}">
+
+                        <div class="form-group">
+                            <label for="name" class="col-md-2 control-label">姓名</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control input-sm" id="name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="block" class="col-md-2 control-label">小区</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control input-sm" id="block">
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-sm btn-alt" data-dismiss="modal" id="fellowship-add-member-save">保存</button>
+                    <button type="button" class="btn btn-sm btn-alt" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <table class="table tile">
+        <thead>
+        <tr>
+            <th>No.</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Username</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>1</td>
+            <td>Jhon </td>
+            <td>Makinton </td>
+            <td>@makinton</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Malinda</td>
+            <td>Hollaway</td>
+            <td>@hollway</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Wayn</td>
+            <td>Parnel</td>
+            <td>@wayne123</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
+
+
+{% block extrajs %}
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        /* Tag Select */
+        (function(){
+            var button = $('#fellowship-add-member-save');
+
+            button.click(function() {
+                var form = $('#form-fellowship-add-member').serialize();
+                console.log(form);
+                $.post('fellowship-add-member', form, function(result){
+                    console.log(result);
+                })
+            });
+        })();
+    });
+
+</script>
+
 {% endblock %}

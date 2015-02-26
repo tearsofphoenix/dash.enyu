@@ -10,7 +10,7 @@ var passport = require('passport');
 var config = require('config');
 
 var app = express();
-var port = process.env.PORT || 8080;
+var port = process.env.PORT || 8211;
 
 // Connect to mongodb
 var connect = function () {

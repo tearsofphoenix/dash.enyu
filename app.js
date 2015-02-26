@@ -31,9 +31,17 @@ app.get('/', function(req, res) {
     res.render('index');
 });
 
+app.get('/fellowship', function(req, res) {
+    res.render('fellowship');
+});
+
 // about page
 app.get('/about', function(req, res) {
     res.render('views/about');
+});
+
+app.use(function(req,res){
+    res.render('404');
 });
 
 app.listen(8080);

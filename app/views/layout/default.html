@@ -1,0 +1,24 @@
+{% include "../include/head.html" %}
+
+<body id="skin-blur-ocean">
+
+{% include "../include/header.html" %}
+
+<div class="clearfix"></div>
+
+<section id="main" class="p-relative" role="main">
+
+    <!-- Sidebar -->
+    {% include "../include/sidebar.html" %}
+    <!-- Content -->
+    <section id="content" class="container">
+    {% block content %}{% endblock %}
+    </section>
+
+    {% include "../include/compatibility.html" %}
+</section>
+
+<!-- Javascript Libraries -->
+{% include "../include/scripts.html" %}
+</body>
+</html>

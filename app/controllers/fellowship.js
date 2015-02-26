@@ -3,10 +3,10 @@
  * Module dependencies.
  */
 
-var mongoose = require('mongoose')
-var Article = mongoose.model('Article')
-var utils = require('../../lib/utils')
-var extend = require('util')._extend
+var mongoose = require('mongoose');
+var Article = mongoose.model('Article');
+var utils = require('../../lib/utils');
+var extend = require('util')._extend;
 
 /**
  * Load
@@ -28,24 +28,10 @@ exports.load = function (req, res, next, id){
  */
 
 exports.index = function (req, res){
-  var page = (req.param('page') > 0 ? req.param('page') : 1) - 1;
-  var perPage = 30;
-  var options = {
-    perPage: perPage,
-    page: page
-  };
 
-  Article.list(options, function (err, articles) {
-    if (err) return res.render('500');
-    Article.count().exec(function (err, count) {
-      res.render('articles/index', {
-        title: 'Articles',
-        articles: articles,
-        page: page + 1,
-        pages: Math.ceil(count / perPage)
-      });
+    res.render('fellowship/index', {
+        fellowship: {name : "莱顿团契"}
     });
-  });
 };
 
 /**
@@ -53,7 +39,7 @@ exports.index = function (req, res){
  */
 
 exports.new = function (req, res){
-  res.render('articles/new', {
+  res.render('fellowship/new', {
     title: 'New Article',
     article: new Article({})
   });
@@ -74,10 +60,10 @@ exports.create = function (req, res) {
   article.uploadAndSave(images, function (err) {
     if (!err) {
       req.flash('success', 'Successfully created article!');
-      return res.redirect('/articles/'+article._id);
+      return res.redirect('/fellowship/'+article._id);
     }
     console.log(err);
-    res.render('articles/new', {
+    res.render('fellowship/new', {
       title: 'New Article',
       article: article,
       errors: utils.errors(err.errors || err)
@@ -90,7 +76,7 @@ exports.create = function (req, res) {
  */
 
 exports.edit = function (req, res) {
-  res.render('articles/edit', {
+  res.render('fellowship/edit', {
     title: 'Edit ' + req.article.title,
     article: req.article
   });
@@ -112,10 +98,10 @@ exports.update = function (req, res){
 
   article.uploadAndSave(images, function (err) {
     if (!err) {
-      return res.redirect('/articles/' + article._id);
+      return res.redirect('/fellowship/' + article._id);
     }
 
-    res.render('articles/edit', {
+    res.render('fellowship/edit', {
       title: 'Edit Article',
       article: article,
       errors: utils.errors(err.errors || err)
@@ -128,7 +114,7 @@ exports.update = function (req, res){
  */
 
 exports.show = function (req, res){
-  res.render('articles/show', {
+  res.render('fellowship/show', {
     title: req.article.title,
     article: req.article
   });
@@ -142,6 +128,6 @@ exports.destroy = function (req, res){
   var article = req.article;
   article.remove(function (err){
     req.flash('info', 'Deleted successfully');
-    res.redirect('/articles');
+    res.redirect('/fellowship');
   });
 };

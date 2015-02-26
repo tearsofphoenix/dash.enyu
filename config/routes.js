@@ -3,13 +3,11 @@
  * Module dependencies.
  */
 
-// Note: We can require users, articles and other cotrollers because we have
+// Note: We can require users, fellowship and other cotrollers because we have
 // set the NODE_PATH to be ./app/controllers (package.json # scripts # start)
 
 var users = require('users');
-var articles = require('articles');
-var comments = require('comments');
-var tags = require('tags');
+var fellowship = require('fellowship');
 var auth = require('./middlewares/authorization');
 
 /**
@@ -40,27 +38,17 @@ module.exports = function (app, passport) {
   app.param('userId', users.load);
 
   // article routes
-  app.param('id', articles.load);
-  app.get('/articles', articles.index);
-  app.get('/articles/new', auth.requiresLogin, articles.new);
-  app.post('/articles', auth.requiresLogin, articles.create);
-  app.get('/articles/:id', articles.show);
-  app.get('/articles/:id/edit', articleAuth, articles.edit);
-  app.put('/articles/:id', articleAuth, articles.update);
-  app.delete('/articles/:id', articleAuth, articles.destroy);
+  app.param('id', fellowship.load);
+  app.get('/fellowship', fellowship.index);
+  app.get('/fellowship/new', auth.requiresLogin, fellowship.new);
+  app.post('/fellowship', auth.requiresLogin, fellowship.create);
+  app.get('/fellowship/:id', fellowship.show);
+  app.get('/fellowship/:id/edit', articleAuth, fellowship.edit);
+  app.put('/fellowship/:id', articleAuth, fellowship.update);
+  app.delete('/fellowship/:id', articleAuth, fellowship.destroy);
 
   // home route
-  app.get('/', articles.index);
-
-  // comment routes
-  app.param('commentId', comments.load);
-  app.post('/articles/:id/comments', auth.requiresLogin, comments.create);
-  app.get('/articles/:id/comments', auth.requiresLogin, comments.create);
-  app.delete('/articles/:id/comments/:commentId', commentAuth, comments.destroy);
-
-  // tag routes
-  app.get('/tags/:tag', tags.index);
-
+  app.get('/', fellowship.index);
 
   /**
    * Error handling

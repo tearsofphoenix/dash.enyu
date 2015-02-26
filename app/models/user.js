@@ -26,12 +26,7 @@ var UserSchema = new Schema({
   provider: { type: String, default: '' },
   hashed_password: { type: String, default: '' },
   salt: { type: String, default: '' },
-  authToken: { type: String, default: '' },
-  facebook: {},
-  twitter: {},
-  github: {},
-  google: {},
-  linkedin: {}
+  authToken: { type: String, default: '' }
 });
 
 /**
@@ -102,7 +97,7 @@ UserSchema.pre('save', function(next) {
   } else {
     next();
   }
-})
+});
 
 /**
  * Methods
@@ -182,6 +177,6 @@ UserSchema.statics = {
       .select(options.select)
       .exec(cb);
   }
-}
+};
 
 mongoose.model('User', UserSchema);

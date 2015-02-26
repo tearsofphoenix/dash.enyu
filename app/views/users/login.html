@@ -27,17 +27,18 @@
             <div class="clearfix"></div>
             
             <!-- Login -->
-            <form class="box tile animated active" id="box-login">
+            <form action="/users/session" method="post" class="box tile animated active" id="box-login">
+                <input type="hidden" name="_csrf" value="{{ csrf_token }}">
                 <h2 class="m-t-0 m-b-15">登录</h2>
-                <input type="text" class="login-control m-b-10" placeholder="用户名/邮箱">
-                <input type="password" class="login-control" placeholder="密码">
+                <input type="text" class="login-control m-b-10" name="email" placeholder="用户名/邮箱" value="a@a.com">
+                <input type="password" class="login-control" name="password" placeholder="密码" value="enyu">
                 <div class="checkbox m-b-20">
                     <label>
                         <input type="checkbox">
                         记住我
                     </label>
                 </div>
-                <button class="btn btn-sm m-r-5">登入</button>
+                <button class="btn btn-sm m-r-5" type="submit">登入</button>
                 
                 <small>
                     <a class="box-switcher" data-switch="box-register" href="">还没有账户?</a> 或
@@ -46,14 +47,16 @@
             </form>
             
             <!-- Register -->
-            <form class="box animated tile" id="box-register">
-                <h2 class="m-t-0 m-b-15">注册</h2>
-                <input type="text" class="login-control m-b-10" placeholder="用户名">
-                <input type="email" class="login-control m-b-10" placeholder="邮箱">
-                <input type="password" class="login-control m-b-10" placeholder="密码">
-                <input type="password" class="login-control m-b-20" placeholder="再次确认密码">
+            <form action="/users" method="post" class="box animated tile" id="box-register">
+                <input type="hidden" name="_csrf" value="{{ csrf_token }}">
 
-                <button class="btn btn-sm m-r-5">注册</button>
+                <h2 class="m-t-0 m-b-15">注册</h2>
+                <input type="text" name="username" class="login-control m-b-10" placeholder="用户名">
+                <input type="email" name="email"  class="login-control m-b-10" placeholder="邮箱">
+                <input type="password" name="password" class="login-control m-b-10" placeholder="密码">
+                <input type="password" name="password2" class="login-control m-b-20" placeholder="再次确认密码">
+
+                <button class="btn btn-sm m-r-5" type="submit" >注册</button>
 
                 <small><a class="box-switcher" data-switch="box-login" href="">已有账户?</a></small>
             </form>
@@ -64,7 +67,7 @@
                 <p>一封重置邮件将发到您的邮箱，请注意查收。</p>
                 <input type="email" class="login-control m-b-20" placeholder="邮箱">
 
-                <button class="btn btn-sm m-r-5">重置</button>
+                <button class="btn btn-sm m-r-5" type="submit">重置</button>
 
                 <small><a class="box-switcher" data-switch="box-login" href="">已有账户?</a></small>
             </form>

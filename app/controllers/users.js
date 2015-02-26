@@ -72,9 +72,7 @@ exports.authCallback = login;
  */
 
 exports.login = function (req, res) {
-  res.render('users/login', {
-    title: 'Login'
-  });
+  res.render('users/login');
 };
 
 /**
@@ -111,4 +109,4 @@ function login (req, res) {
   var redirectTo = req.session.returnTo ? req.session.returnTo : '/';
   delete req.session.returnTo;
   res.redirect(redirectTo);
-};
+}

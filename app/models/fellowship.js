@@ -12,40 +12,14 @@ var utils = require('../../lib/utils');
 
 var Schema = mongoose.Schema;
 
-/**
- * Getters
- */
-
-var getTags = function (tags) {
-  return tags.join(',');
-};
-
-/**
- * Setters
- */
-
-var setTags = function (tags) {
-  return tags.split(',');
-};
 
 /**
  * Article Schema
  */
 
 var ArticleSchema = new Schema({
-  title: {type : String, default : '', trim : true},
-  body: {type : String, default : '', trim : true},
-  user: {type : Schema.ObjectId, ref : 'User'},
-  comments: [{
-    body: { type : String, default : '' },
-    user: { type : Schema.ObjectId, ref : 'User' },
-    createdAt: { type : Date, default : Date.now }
-  }],
-  tags: {type: [], get: getTags, set: setTags},
-  image: {
-    cdnUri: String,
-    files: []
-  },
+  name: {type : String, default : ''},
+  block: {type : String, default : ''},
   createdAt  : {type : Date, default : Date.now}
 });
 
@@ -53,8 +27,8 @@ var ArticleSchema = new Schema({
  * Validations
  */
 
-ArticleSchema.path('title').required(true, 'Article title cannot be blank');
-ArticleSchema.path('body').required(true, 'Article body cannot be blank');
+ArticleSchema.path('name').required(true, 'Article title cannot be blank');
+ArticleSchema.path('block').required(true, 'Article body cannot be blank');
 
 /**
  * Pre-remove hook
@@ -145,7 +119,7 @@ ArticleSchema.methods = {
     else return cb('not found');
     this.save(cb);
   }
-}
+};
 
 /**
  * Statics
@@ -186,6 +160,6 @@ ArticleSchema.statics = {
       .skip(options.perPage * options.page)
       .exec(cb);
   }
-}
+};
 
-mongoose.model('Article', ArticleSchema);
+mongoose.model('FellowShip', ArticleSchema);

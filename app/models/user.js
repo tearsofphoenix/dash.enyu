@@ -20,12 +20,15 @@ var oAuthTypes = [
  */
 
 var UserSchema = new Schema({
-  email: { type: String, default: '' },
-  username: { type: String, default: '' },
-  provider: { type: String, default: '' },
-  hashed_password: { type: String, default: '' },
-  salt: { type: String, default: '' },
-  authToken: { type: String, default: '' }
+    email: { type: String, default: '' },
+    username: { type: String, default: '' },
+    provider: { type: String, default: '' },
+    hashed_password: { type: String, default: '' },
+    salt: { type: String, default: '' },
+    authToken: { type: String, default: '' },
+    block : { type: String, default: ''},
+    fs_id : { type: Schema.ObjectId, ref: 'FellowShip'},
+    createdAt  : {type : Date, default : Date.now}
 });
 
 /**

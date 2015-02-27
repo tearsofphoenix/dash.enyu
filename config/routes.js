@@ -35,7 +35,6 @@ module.exports = function (app, passport) {
 
 
     app.get('/fellowship', fellowship.index);
-    app.post('/fellowship-add-member', auth.requiresLogin, fellowship.addmember);
 
     app.get('/alerts', function(req, res) {
         res.render('alerts');

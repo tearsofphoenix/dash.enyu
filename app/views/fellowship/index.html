@@ -4,8 +4,8 @@
 
 <!-- Deafult Table -->
 <div class="block-area" id="defaultStyle">
-    <h3 class="block-title">Default Style</h3>
-    <a class="btn btn-alt m-5" data-toggle="modal" href="#fellowship-add-member">添加</a>
+    <h3 class="block-title">成员</h3>
+    <a class="btn btn-sm btn-alt m-5" data-toggle="modal" href="#fellowship-add-member">添加</a>
 
     <!-- Modal -->
     <div class="modal fade" id="fellowship-add-member" tabindex="-1" role="dialog">
@@ -48,31 +48,22 @@
     <table class="table tile">
         <thead>
         <tr>
-            <th>No.</th>
-            <th>First Name</th>
-            <th>Last Name</th>
+            <th>序号</th>
+            <th>姓名</th>
+            <th>小区</th>
             <th>Username</th>
         </tr>
         </thead>
+
         <tbody>
-        <tr>
-            <td>1</td>
-            <td>Jhon </td>
-            <td>Makinton </td>
-            <td>@makinton</td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>Malinda</td>
-            <td>Hollaway</td>
-            <td>@hollway</td>
-        </tr>
-        <tr>
-            <td>3</td>
-            <td>Wayn</td>
-            <td>Parnel</td>
-            <td>@wayne123</td>
-        </tr>
+        {% for person in users %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ person.name }}</td>
+                <td>{{ person.block }}</td>
+                <td> </td>
+            </tr>
+        {% endfor %}
         </tbody>
     </table>
 </div>
@@ -84,7 +75,7 @@
 
 <script type="text/javascript">
     $(document).ready(function(){
-        /* Tag Select */
+
         (function(){
             var button = $('#fellowship-add-member-save');
 
